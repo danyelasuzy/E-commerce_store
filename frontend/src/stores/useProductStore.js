@@ -16,7 +16,10 @@ export const useProductStore = create((set) => ({
         loading: false,
       }));
     } catch (error) {
-      toast.error(error.response.data.error);
+      const errorMessage =
+        error?.response?.data?.error ||
+        "Something went wrong while creating the product.";
+      toast.error(errorMessage);
       set({ loading: false });
     }
   },
@@ -46,10 +49,8 @@ export const useProductStore = create((set) => ({
     set({ loading: true });
     try {
       await axiosInstance.delete(`/products/${productId}`);
-      set((prevProducts) => ({
-        products: prevProducts.products.filter(
-          (product) => product._id !== productId
-        ),
+      set((state) => ({
+        products: state.products.filter((product) => product._id !== productId),
         loading: false,
       }));
     } catch (error) {

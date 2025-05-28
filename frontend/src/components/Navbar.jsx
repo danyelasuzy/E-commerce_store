@@ -15,7 +15,7 @@ const Navbar = () => {
         <Link to="/">
           <Logo />
         </Link>
-        <div className="text-[6px] w-1/2 md:pl-10 text-[#8B7E74] font-semibold md:text-sm text-center py-2 z-50 relative animate-jump">
+        <div className="text-[8px] w-1/2 md:pl-10 text-[#8B7E74] font-semibold md:text-sm text-center py-2 z-50 relative animate-jump">
           Free deliveries on orders over{" "}
           <span className="text-[#D7A86E]">35€</span>!
         </div>
@@ -34,8 +34,8 @@ const Navbar = () => {
               <ShoppingCart className="w-5 h-5 md:w-7 md:h-7 hover:text-[#D7A86E] cursor-pointer" />
               {cart.length > 0 && (
                 <span
-                  className="absolute -top-2 -left-2 bg-emerald-500 text-white rounded-full px-2 py-0.5 
-									text-xs group-hover:bg-emerald-400 transition duration-300 ease-in-out"
+                  className="absolute top-1.5 right-17 md:top-8 md:right-53 bg-[#734b91] text-white rounded-full px-2 py-0.5 
+									text-xs group-hover:bg-gray-500 transition duration-300 ease-in-out"
                 >
                   {cart.length}
                 </span>
@@ -44,7 +44,7 @@ const Navbar = () => {
           )}
           {isAdmin && (
             <Link
-              className="bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-1 rounded-md font-medium
+              className="bg-[#734b91] hover:bg-gray-600 text-white px-3 py-1 rounded-md font-medium
 								 transition duration-300 ease-in-out flex items-center"
               to={"/secret-dashboard"}
             >

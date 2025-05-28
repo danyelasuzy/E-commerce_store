@@ -3,7 +3,10 @@ import HomePage from "./pages/HomePage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import CategoryPage from "./pages/CategoryPage.jsx";
+import AdminPage from "./pages/AdminPage.jsx";
 import Navbar from "./components/Navbar.jsx";
+import CartPage from "./pages/CartPage.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 import { ContactForm } from "./components/ContactForm.jsx";
 import { Footer } from "./components/Footer.jsx";
 import { useEffect } from "react";
@@ -29,6 +32,7 @@ function App() {
     <>
       <div className="h-screen w-full bg-[linear-gradient(135deg,_#F7EBD2,_#F6D6A8,_#F2BFAF)]">
         <Navbar isAdmin={false} />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
@@ -46,6 +50,10 @@ function App() {
             }
           />
           <Route path="/category/:category" element={<CategoryPage />} />
+          <Route
+            path="/cart"
+            element={user ? <CartPage /> : <Navigate to="/login" />}
+          />
         </Routes>
         <ContactForm />
         <Footer />

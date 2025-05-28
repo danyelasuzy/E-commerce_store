@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import ProductCard from "../components/ProductCard";
+import GoBackButton from "../components/GoBackButton";
 
 const CategoryPage = () => {
   const { fetchProductsByCategory, products } = useProductStore();
@@ -16,17 +17,9 @@ const CategoryPage = () => {
 
   console.log("products:", products);
   return (
-    <div className="min-h-screen">
-      <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <motion.h1
-          className="text-center text-4xl sm:text-5xl font-bold text-emerald-400 mb-8"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          {category.charAt(0).toUpperCase() + category.slice(1)}
-        </motion.h1>
-
+    <div className="min-h-screen bg-[linear-gradient(135deg,_#F7EBD2,_#F6D6A8,_#F2BFAF)]">
+      <div className="pt-20 md:pt-35 relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <GoBackButton />
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center"
           initial={{ opacity: 0, y: 20 }}
