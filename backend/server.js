@@ -8,6 +8,7 @@ import paymentRoutes from "./routes/payment.route.js";
 import { connectDB } from "./lib/db.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { path } from "path";
 
 dotenv.config();
 
@@ -23,12 +24,20 @@ app.use(
 
 const PORT = process.env.PORT || 3000;
 
+const__dirname = path.resolve();
+
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/coupons", couponRoutes);
 app.use("/api/payments", paymentRoutes);
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+  });
+}
 app.listen(PORT, () => {
   console.log("Server is running on http://localhost:" + PORT);
   connectDB();
