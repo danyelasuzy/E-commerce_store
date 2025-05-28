@@ -33,13 +33,19 @@ export const useUserStore = create((set, get) => ({
     try {
       const res = await axiosInstance.post("/auth/login", { email, password });
 
-      set({ user: res.data, loading: false });
+      if (res?.data) {
+        set({ user: res.data, loading: false });
+      } else {
+        throw new Error("No user data returned from login.");
+      }
     } catch (error) {
       set({ loading: false });
-      toast.error(error.response.data.message || "An error occurred");
+      console.error(error); // for debugging
+      toast.error(
+        error?.response?.data?.message || error.message || "Login failed"
+      );
     }
   },
-
   logout: async () => {
     try {
       await axiosInstance.post("/auth/logout");
@@ -77,8 +83,6 @@ export const useUserStore = create((set, get) => ({
     }
   },
 }));
-
-// TODO: Implement the axios interceptors for refreshing access token
 
 // Axios interceptor for token refresh
 let refreshPromise = null;
